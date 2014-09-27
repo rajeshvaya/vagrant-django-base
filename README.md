@@ -1,7 +1,7 @@
 vagrant-django-base
 ===================
 
-## Prerequisites
+### Prerequisites
 - Vagrant (http://www.vagrant.com)
 
 
