@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder "./vagrant_resources", "/home/vagrant/host_resources"
 
   config.vm.provision "shell", path: "vagrant_resources/install/install.sh"
+  config.vm.provision "shell", path: "vagrant_resources/install/bootstrap.sh", privileged: false
 
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 3306, host: 3000
