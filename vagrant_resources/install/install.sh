@@ -7,6 +7,20 @@ echo "==========================================="
 echo "Updating apt-get..."
 #apt-get update -y
 
+# python-setuptools
+echo "=============================="
+echo "Installing python-setuptools"
+echo "=============================="
+apt-get install python-setuptools -y
+
+#apache
+if ! command -v apache2; then
+    echo "=============================="
+    echo "Installing Apache2"
+    echo "=============================="
+    sudo apt-get install apache2 -y
+fi
+
 #git
 if ! command -v git; then
     echo "=============================="
@@ -14,6 +28,7 @@ if ! command -v git; then
     echo "=============================="
     sudo apt-get install git -y
 fi
+
 
 #mysql
 if ! command -v mysql; then
@@ -38,25 +53,35 @@ fi
 
 #virtualenv
 if [[ ! -f /usr/local/bin/virtualenv ]]; then
-    echo "=============================="
-    echo "Installing virtualenv..."
-    echo "=============================="
+    echo "==========================================="
+    echo "Installing virtualenv virtualwrapper..."
+    echo "==========================================="
     pip install virtualenv virtualenvwrapper stevedore virtualenv-clone
 fi
 
+echo "================================="
+echo "Setting up .bash_profile"
+echo "================================="
 # copy the terminal settings from host
 cp -rf /home/vagrant/host_resources/install/.bash_profile /home/vagrant/
 
 
 #### PROJECT SETTINGS ####
-ENV_NAME = "default"
+ENV_NAME="default"
 
+
+echo "================================="
+echo "Creating virtual environments"
+echo "================================="
 #create the virtual env
-mkvirtualenv $ENV_NAME
-workon $ENV_NAME
+mkvirtualenv $ENV_NAME;
+workon $ENV_NAME;
 
+echo "============================================="
+echo "Install default apps as per requirements.txt"
+echo "============================================="
 # pip install apps
-cd ~/www
+cd /home/vagrant/www/;
 pip install -r requirements.txt
 
 
