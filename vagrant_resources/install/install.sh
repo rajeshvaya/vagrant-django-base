@@ -49,11 +49,11 @@ cp -rf /home/vagrant/host_resources/install/.bash_profile /home/vagrant/
 
 
 #### PROJECT SETTINGS ####
-PROJECT_NAME = "default_project"
+ENV_NAME = "default"
 
 #create the virtual env
-mkvirtualenv $PROJECT_NAME
-workon $PROJECT_NAME
+mkvirtualenv $ENV_NAME
+workon $ENV_NAME
 
 # pip install apps
 cd ~/www
