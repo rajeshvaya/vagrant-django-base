@@ -5,7 +5,7 @@ echo "==========================================="
 
 # Install essential packages from Apt
 echo "Updating apt-get..."
-apt-get update -y
+#apt-get update -y
 
 #git
 if ! command -v git; then
