@@ -49,7 +49,7 @@ cp -rf /home/vagrant/host_resources/install/.bash_profile /home/vagrant/
 
 
 #### PROJECT SETTINGS ####
-PROJECT_NAME = "project_name"
+PROJECT_NAME = "default_project"
 
 #create the virtual env
 mkvirtualenv $PROJECT_NAME
