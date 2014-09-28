@@ -75,7 +75,7 @@ echo "Creating virtual environments"
 echo "================================="
 
 #create the virtual env
-sh /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv $ENV_NAME;
 workon $ENV_NAME;
 
