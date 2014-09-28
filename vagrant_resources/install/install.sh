@@ -64,6 +64,7 @@ echo "Setting up .bash_profile"
 echo "================================="
 # copy the terminal settings from host
 cp -rf /home/vagrant/host_resources/install/.bash_profile /home/vagrant/
+source /home/vagrant/.bash_profile
 
 
 #### PROJECT SETTINGS ####
@@ -75,7 +76,6 @@ echo "Creating virtual environments"
 echo "================================="
 
 #create the virtual env
-source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv $ENV_NAME;
 workon $ENV_NAME;
 
