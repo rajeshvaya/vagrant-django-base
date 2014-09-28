@@ -23,6 +23,9 @@ if ! command -v mysql; then
     apt-get install debconf-utils -y
     debconf-set-selections <<< "mysql-server mysql-server/root_password password root"
     debconf-set-selections <<< "mysql-server mysql-server/root_password_again password root"
+
+    apt-get install python-dev -y
+    apt-get install libmysqlclient-dev -y
 fi
 
 # pip
@@ -43,3 +46,18 @@ fi
 
 # copy the terminal settings from host
 cp -rf /home/vagrant/host_resources/install/.bash_profile /home/vagrant/
+
+
+#### PROJECT SETTINGS ####
+PROJECT_NAME = "project_name"
+
+#create the virtual env
+mkvirtualenv $PROJECT_NAME
+workon $PROJECT_NAME
+
+# pip install apps
+cd ~/www
+pip install -r requirements.txt
+
+
+

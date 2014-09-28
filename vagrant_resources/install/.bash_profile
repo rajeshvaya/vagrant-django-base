@@ -73,5 +73,8 @@ ORANGE=$'\e[33;40m'
 
 #export PATH=/opt/subversion/bin:$PATH
 
-export PS1='\n${PINK}\u ${D}at ${ORANGE}${HOSTNAME} ${D}in ${GREEN}\w\
+export PS1='${PINK}\u ${D}at ${ORANGE}${HOSTNAME} ${D}in ${GREEN}\w\
 ${D}\n$ '
+
+export WORKON_HOME="$HOME/.virtualenvs"
+source /usr/local/bin/virtualenvwrapper.sh
