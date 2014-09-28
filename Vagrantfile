@@ -10,13 +10,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "django-base"
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/1/providers/virtualbox.box"
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "vagrant_resources/puppet/manifests/"
+    puppet.manifest_file = "default.pp"
+  end
+
+  config.vm.synced_folder "./src", "/home/vagrant/www/"
+  config.vm.synced_folder "./vagrant_resources", "/home/vagrant/host_resources"
+
+  config.vm.provision "shell", path: "vagrant_resources/install/install.sh"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
