@@ -1,0 +1,117 @@
+{% extends "layout/default/template.html" %}
+{% load crispy_forms_tags %}
+{% load url from future %}
+
+{% block content %}
+	<div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="login-container">
+                    <h2>Sign In</h2>
+                    <hr/>
+                    {% if signin_form.errors %}
+                      <p class='auth-error-message'>Your email and password didn't match.</p>
+                    {% endif %}
+                    <form class="form-horizontal" role="" autocomplete="off" action="{% url 'auth.signin' %}?next={{next}}" method="POST">{% csrf_token %}
+                      <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                          <input type="email" class="form-control" id="login-email" placeholder="Email" name="username">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">Password</label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" id="login-password" placeholder="Password" name='password'>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                          <button type="submit" class="btn btn-danger pull-left">Sign in</button> 
+                          <span class='forgot-password pull-right'><small><a href="{% url 'auth.forgot' %}">Forgot password?</a></small></span>
+                        </div>
+                      </div>
+                    </form>
+                </div><!-- login-container -->
+            </div>
+
+            <div class="col-md-offset-1 col-md-1 hidden-sm hidden-xs">
+              <div class="or-container">
+                <h2>OR</h2>
+              </div><!-- or-container -->
+            </div>
+
+            <div class="col-md-offset-1 col-md-3">
+              <h2>Social Sign In</h2>
+              <hr/>
+              <div class="social-login-container">
+                <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img src="{{STATIC_URL}}img/sign-in-with-twitter-gray.png"/></a>
+                <br/>
+                <br/>
+                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img src="{{STATIC_URL}}img/sign-in-with-facebook.png"/></a>
+              </div> <!-- social-long-container -->
+            </div>
+        </div><!-- row -->
+    </div><!-- container -->
+
+    <div class="container">
+        <hr class="default-border"/>
+    </div>
+            
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="register-container">
+                    <h2>Sign Up</h2>
+                    <hr/>
+
+                    {% if signup_form.errors %}
+                      <p class='auth-error-message'>
+                        {% for error in signup_form.errors %}
+                          <span>{{error}}</span><br/>
+                        {% endfor %}
+                      </p>
+                    {% endif %}
+                    <form class="form-horizontal" role="" autocomplete="off" action="{% url 'auth.signup' %}?next={{next}}" method="POST">{% csrf_token %}
+                      <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Name*</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="register-name" placeholder="Name" name="name" value={{request.POST.name}}>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email*</label>
+                        <div class="col-sm-9">
+                          <input type="email" class="form-control" id="register-email" placeholder="Email" name="email" value={{request.POST.email}}>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">Password*</label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" id="register-password" placeholder="Password" name="password1">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">Confirm*</label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" id="register-password" placeholder="Confirm Password" name="password2">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Sign Up</button>
+                        </div>
+                      </div>
+                    </form>
+                </div><!-- register-container -->
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
